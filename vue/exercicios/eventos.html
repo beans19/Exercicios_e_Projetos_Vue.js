@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Eventos</title>
+    <link rel="shortcut icon" type="image/png" href="./icons/favicon.png"/>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+    <style>
+        .descobrir{
+            color: darkred;
+        }
+        .descobrir:hover{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p>{{ contador }}</p>
+        <p>
+            <button v-on:click="add">+1</button> <!-- A diretiva v-on vai chamar alguma função dependendo do tipo de ação, no caso quando clicado o botão, será chamada a função add()-->
+            <button @click="contador -= 2">-2</button> <!-- Também podemos escrever a diretiva de forma reduzida usando @ e passando funções simmples, como uma subtração-->
+        </p>
+        <p @mousemove="atualizarPosicao">
+            Coordenadas: {{ x }} e {{ y }}
+            <span @mousemove.stop>Aqui não!</span>
+        </p>
+        <input type="text" @keyup.enter="alert">
+        <p class="textoData">Clique aqui para descobrir quando você acessou esta página:<p class="descobrir" @click="alertData">Descobrir</button></p>
+    </div>
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                x: 0,
+                y: 0,
+                contador: 0
+            },
+            methods: {
+                add(){
+                    this.contador++
+                },
+                atualizarPosicao(e){
+                    this.x = e.clientX
+                    this.y = e.clientY
+                },
+                alert(){
+                    alert("Enter!")
+                },
+                alertData(){
+                    alert("Você acessou essa página em: " + new Date().toLocaleString())
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Binding</title>
+    <link rel="shortcut icon" type="image/png" href="./icons/favicon.png"/>
+    <link rel="stylesheet" href="./css/estilo.css">
+    <script src="./js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <p>{{ link }}</p>
+        <!-- <p><a href="{{ link }}">Link não funcionando :(</a></p> Não funciona! -->
+        <p><a v-bind:href="link">Link</a></p> <!-- A diretiva v-bind quer dizer que a propriedade href deve ser interpolada pelo Vue-->
+        <p><a :href="link">Binding reduzido</a></p> <!-- Forma reduzida de fazer um binding -->
+        <p>
+            <input type="text" v-model="nome"><br>
+            <span>{{ nome }}</span>
+        </p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                nome: "Felipe",
+                link: "https://www.youtube.com/watch?v=it9dUK0S0cE" // Minha música favorita no momento :P
+            },
+            watch: {
+                nome(novoValor){
+                    console.log(novoValor.toUpperCase())
+                }
+            }
+        })
+    </script>
+</body>
+</html>

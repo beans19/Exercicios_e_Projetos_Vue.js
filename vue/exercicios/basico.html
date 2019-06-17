@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Conceitos Básicos</title>
+    <link rel="shortcut icon" type="image/png" href="./icons/favicon.png"/>
+    <link rel="stylesheet" href="./css/estilo.css">
+    <script type="text/javascript" src="./js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app"> <!-- Template. É onde o Vue irá manipular o DOM-->
+        <p>1) {{ 2 + 2 }} </p> <!-- Realização de uma soma básica com Vue-->
+        <p>2) {{ "teste".toUpperCase() }} </p> <!-- Transformando caracteres normais em maiúsculo-->
+        <p> Produto: {{ nome }}, R$ {{ preco }}, {{ desconto * 100}}% de desconto!</p> <!-- Exemplo de consumo dos dados da Instância Vue-->
+        <p>Hora Certa: {{horaCerta()}}</p> <!-- Chamando a função criada em methods-->
+        <p>Preço com desconto: R$ {{ precoComDesconto }}</p> <!-- Inclusão de um dado computado-->
+    </div>
+
+    <script> 
+        new Vue({ // Instância Vue
+            el: "#app", // Elemento que será trabalhado
+            data: { // Dados desse elemento
+                nome: 'Caneta',
+                preco: 6.89,
+                desconto: 0.15
+            },
+            methods: { // Criação de funções
+                horaCerta() { // Função que retorna a data e hora
+                    return new Date().toLocaleString()
+                }
+            },
+            computed: {
+                precoComDesconto(){
+                    return this.preco * (1 - this.desconto)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Componente</title>
+    <link rel="shortcut icon" type="image/png" href="./icons/favicon.png"/>
+    <link rel="stylesheet" href="/css/estilo.css">
+    <script src="/js/vue.min.js"></script>
+</head>
+<body class="exercicio">
+    <div id="app">
+        <saudacao nome="Felipe"></saudacao>
+        <br>
+        <contador></contador>
+    </div>
+    <script>
+        Vue.component('saudacao', {  // O componente recebe dois parâmetros, o nome do componente e um objeto que vai ter propriedades, atributos, etc.
+            props: ['nome'],
+            template: `
+                <div>Bom dia {{ nome }}!</div>
+            `
+        })
+
+        Vue.component('contador', {
+            data: function(){
+                return {
+                    contador: 0
+                }
+            },
+            methods:{
+                addContador() {
+                    return this.contador++
+                }
+            },
+            template: `
+                <div>
+                    <span>{{contador}}</span>
+                    <button @click="addContador">+1</button>
+                    <button @click="contador--">-1</button>
+                </div>
+            `
+        })
+
+        new Vue({
+            el:"#app"
+        })
+    </script>
+</body>
+</html>
